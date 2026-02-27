@@ -42,7 +42,7 @@
 
 <script setup>
 defineProps({
-  name: { type: String, default: "Zaina Cassandra" },
+  name: { type: String, default: "Cassie" },
   bio: { type: String, default: "Human in progress · IT Student · Creative Soul" },
   role: { type: String, default: "IT Student / Developer" },
   build: { type: String, default: "Creative-Technical Hybrid" },
