@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { supabase } from "/wp/src/lib/supabase";
+import { supabase } from "../lib/supabase";
 
 const name = ref("");
 const message = ref("");
@@ -48,6 +48,11 @@ function formatDate(date) {
 }
 
 async function fetchMessages() {
+  if (!supabase) {
+    alert("Supabase ENV missing in Vercel.");
+    return;
+  }
+
   loadingList.value = true;
 
   const { data, error } = await supabase
@@ -56,11 +61,17 @@ async function fetchMessages() {
     .order("created_at", { ascending: false });
 
   if (!error) items.value = data;
+  else alert(error.message);
 
   loadingList.value = false;
 }
 
 async function submit() {
+  if (!supabase) {
+    alert("Supabase ENV missing.");
+    return;
+  }
+
   loading.value = true;
 
   const { error } = await supabase.from("guestbook").insert([

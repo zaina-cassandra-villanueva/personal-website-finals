@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import App from "/wp/src/App.vue";
-import "/wp/src/style.css";
+import App from "./App.vue";
+import "./style.css";
 
 createApp(App).mount("#app");
