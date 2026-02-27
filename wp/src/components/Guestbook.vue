@@ -136,6 +136,7 @@
 import { reactive } from "vue";
 import RpgModal from "./RpgModal.vue";
 
+
 defineProps({
   name: { type: String, default: "Zaina Cassandra" },
   bio: { type: String, default: "Human in progress · IT Student · Creative Soul" },
