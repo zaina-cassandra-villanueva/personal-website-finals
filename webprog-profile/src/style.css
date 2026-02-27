@@ -28,7 +28,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { supabase } from "../lib/supabase";
+import { supabase } from "/src/lib/supabase.js";
 
 const name = ref("");
 const message = ref("");
