@@ -58,7 +58,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import Guestbook from "./components/Guestbook.vue";
+import Guestbook from "/wp/src/components/Guestbook.vue";
 
 const dark = ref(true);
 
