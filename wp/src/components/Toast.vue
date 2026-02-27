@@ -14,7 +14,7 @@
 import { ref, watchEffect } from "vue";
 
 const props = defineProps({
-  title: { type: String, default: "Heads up" },
+  title: { type: String, default: "System Message" },
   message: { type: String, default: "" },
   show: { type: Boolean, default: false },
   duration: { type: Number, default: 2800 },

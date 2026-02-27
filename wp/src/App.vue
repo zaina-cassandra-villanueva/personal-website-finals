@@ -1,44 +1,48 @@
 <template>
   <div class="container">
-    <div class="header" style="margin-bottom:14px;">
-      <div class="badge">🟣 <span>WEBPROG Finals · Vue + Supabase</span></div>
-      <a class="badge" href="#" @click.prevent="showToastNow">
-        🎭 <span>Random Toast</span>
-      </a>
+    <div class="topbar">
+      <div class="brand">
+        <b>WEBPROG — MobProg Inspired</b>
+        <span>Game Profile Website</span>
+      </div>
+      <div class="row">
+        <span class="badge">✅ Vue + Supabase (GET + POST)</span>
+        <button class="btn secondary" @click="showToastNow">Random Toast</button>
+      </div>
     </div>
 
     <div class="grid">
-      <ProfileCard
+      <MobprogProfile
         name="Zaina Cassandra"
         bio="Human in progress · IT Student · Creative Soul"
-        role="BSIT Student"
-        build="Main Character Build"
-        arc="Finals Survival Mode 😭"
+        :level="19"
+        @toast="showToastNow"
       />
 
       <div class="card glow" style="padding:16px;">
-        <div class="sectionTitle">About this project</div>
-        <div style="font-size:18px; font-weight:900; margin-top:6px;">Features</div>
+        <div class="sectionTitle">Project Features</div>
         <div class="hr"></div>
-
-        <div class="row" style="flex-direction:column; align-items:flex-start; gap:8px;">
-          <div class="badge">✅ GET: Fetch guestbook messages</div>
-          <div class="badge">✅ POST: Add new guestbook message</div>
-          <div class="badge">✅ Responsive UI (mobile + desktop)</div>
-          <div class="badge">✅ Supabase connected using env variables</div>
-          <div class="badge">✅ Funny microcopy for engagement</div>
+        <div class="pills">
+          <span class="pill">Responsive UI</span>
+          <span class="pill">Main Character Profile</span>
+          <span class="pill">RPG Popups</span>
+          <span class="pill">Funny Toast</span>
+          <span class="pill">Guestbook (Supabase)</span>
+          <span class="pill">GET + POST</span>
         </div>
-
         <div class="hr"></div>
-
+        <p class="p">
+          This website mirrors my Mobile Programming app UI using web layout + RPG-like sections.
+          Guestbook uses Supabase for saving and displaying comments.
+        </p>
+        <div class="hr"></div>
         <div class="small">
-          Tip: If insert/select fails, check Supabase RLS policy for table <b>guestbook</b>.
+          If posting fails, check Supabase RLS policy for table <b>guestbook</b>.
         </div>
       </div>
     </div>
 
-    <div style="height:18px;"></div>
-
+    <div style="height:16px;"></div>
     <Guestbook />
 
     <Toast
@@ -52,13 +56,13 @@
 
 <script setup>
 import { reactive } from "vue";
-import ProfileCard from "./components/ProfileCard.vue";
-import Guestbook from "./components/Guestbook.vue";
 import Toast from "./components/Toast.vue";
+import Guestbook from "./components/Guestbook.vue";
+import MobprogProfile from "./components/MobprogProfile.vue";
 
 const toast = reactive({
   show: false,
-  title: "Welcome back",
+  title: "System Message",
   message: "",
   duration: 2800,
 });
@@ -67,20 +71,18 @@ const toasts = [
   "Welcome back, Zai. Your motivation is… loading…",
   "Reminder: hydration buff available 💧",
   "You have 99 problems and 98 are deadlines 😭",
-  "If this site loads, you pass. (manifesting)",
-  "Vue is cute, but deadlines are cuter… NOT 😭",
+  "If this deploy works, you pass. (manifesting)",
+  "Main character energy detected. Proceed. ✨",
 ];
 
-function showToastNow() {
+function showToastNow(){
   toast.title = "System Message";
   toast.message = toasts[Math.floor(Math.random() * toasts.length)];
   toast.duration = 2800;
 
-  // trigger
   toast.show = false;
   setTimeout(() => (toast.show = true), 10);
 }
 
-// Auto toast once on load
 showToastNow();
 </script>
