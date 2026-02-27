@@ -1,16 +1,19 @@
 <template>
   <div class="container">
+    <!-- TOP BAR -->
     <div class="topbar">
       <div class="brand">
         <b>WEBPROG — MobProg Inspired</b>
         <span>Game Profile Website</span>
       </div>
+ 
       <div class="row">
         <span class="badge">✅ Vue + Supabase (GET + POST)</span>
         <button class="btn secondary" @click="showToastNow">Random Toast</button>
       </div>
     </div>
-
+ 
+    <!-- MAIN GRID -->
     <div class="grid">
       <MobprogProfile
         name="Zaina Cassandra"
@@ -18,10 +21,11 @@
         :level="19"
         @toast="showToastNow"
       />
-
+ 
       <div class="card glow" style="padding:16px;">
         <div class="sectionTitle">Project Features</div>
         <div class="hr"></div>
+ 
         <div class="pills">
           <span class="pill">Responsive UI</span>
           <span class="pill">Main Character Profile</span>
@@ -30,21 +34,25 @@
           <span class="pill">Guestbook (Supabase)</span>
           <span class="pill">GET + POST</span>
         </div>
+ 
         <div class="hr"></div>
         <p class="p">
           This website mirrors my Mobile Programming app UI using web layout + RPG-like sections.
           Guestbook uses Supabase for saving and displaying comments.
         </p>
+ 
         <div class="hr"></div>
         <div class="small">
           If posting fails, check Supabase RLS policy for table <b>guestbook</b>.
         </div>
       </div>
     </div>
-
+ 
+    <!-- GUESTBOOK (FORM + LIST) -->
     <div style="height:16px;"></div>
     <Guestbook />
-
+ 
+    <!-- TOAST -->
     <Toast
       :show="toast.show"
       :title="toast.title"
@@ -53,20 +61,20 @@
     />
   </div>
 </template>
-
+ 
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import Toast from "./components/Toast.vue";
 import Guestbook from "./components/Guestbook.vue";
 import MobprogProfile from "./components/MobprogProfile.vue";
-
+ 
 const toast = reactive({
   show: false,
   title: "System Message",
   message: "",
   duration: 2800,
 });
-
+ 
 const toasts = [
   "Welcome back, Zai. Your motivation is… loading…",
   "Reminder: hydration buff available 💧",
@@ -74,15 +82,16 @@ const toasts = [
   "If this deploy works, you pass. (manifesting)",
   "Main character energy detected. Proceed. ✨",
 ];
-
-function showToastNow(){
+ 
+function showToastNow() {
   toast.title = "System Message";
   toast.message = toasts[Math.floor(Math.random() * toasts.length)];
   toast.duration = 2800;
-
+ 
+  // retrigger
   toast.show = false;
   setTimeout(() => (toast.show = true), 10);
 }
-
-showToastNow();
+ 
+onMounted(() => showToastNow());
 </script>
